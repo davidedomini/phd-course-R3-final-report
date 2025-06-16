@@ -73,18 +73,46 @@ While full reproducibility is difficult to guarantee, adopting rigorous standard
 \label{sec:introduction}
 Reproducibility in scientific research refers to the ability to re-run an experiment and 
  obtain the same results using the same data and methods. 
-% 
+%
 In machine learning, this concept is critical but elusive. 
 %
 Unlike traditional experiments, ML pipelines often include stochastic processes 
  (e.g., weight initialization, dropout, random sampling), complex software dependencies, 
  and undocumented preprocessing---all of which hinder reproducibility.
 
-Recent studies~\cite{DBLP:journals/ncs/X21i,DBLP:conf/qrs/Rivera-LandosKN21} have shown that even minor changes 
- in software libraries or data formats can lead to significant discrepancies in model performance. 
+Machine learning systems are often built on multi-layered toolchains that combine 
+ code, data, software environments, and hardware settings. 
 % 
+This intricate composition makes the reproduction of experiments particularly sensitive to 
+ any change in configuration, even seemingly minor ones. 
+% 
+For instance, updates in a deep learning framework or changes in random seed initialization 
+ can yield notably different results. 
+% 
+Furthermore, the fast-paced nature of ML development exacerbates this issue: 
+ researchers and engineers rapidly adopt new tools and libraries, 
+ sometimes at the expense of careful documentation or environment control.
+
+Recent studies~\cite{DBLP:journals/ncs/X21i,DBLP:conf/qrs/Rivera-LandosKN21} have shown that even 
+ minor changes in software libraries or data formats can lead to significant discrepancies in 
+ model performance. 
+%
 As a result, reproducing published ML results is often non-trivial, 
  undermining both trust and progress in the field.
+% Reproducibility in scientific research refers to the ability to re-run an experiment and 
+%  obtain the same results using the same data and methods. 
+% % 
+% In machine learning, this concept is critical but elusive. 
+% %
+% Unlike traditional experiments, ML pipelines often include stochastic processes 
+%  (e.g., weight initialization, dropout, random sampling), complex software dependencies, 
+%  and undocumented preprocessing---all of which hinder reproducibility.
+
+% Recent studies~\cite{DBLP:journals/ncs/X21i,DBLP:conf/qrs/Rivera-LandosKN21} have shown that even minor changes 
+%  in software libraries or data formats can lead to significant discrepancies in model performance. 
+% % 
+% As a result, reproducing published ML results is often non-trivial, 
+%  undermining both trust and progress in the field.
 
 \section{Problem Description}
 \label{sec:problem}
