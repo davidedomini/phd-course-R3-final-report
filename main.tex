@@ -1,47 +1,129 @@
-\documentclass{scrartcl}
+% This must be in the first 5 lines to tell arXiv to use pdfLaTeX, which is strongly recommended.
+\pdfoutput=1
+% In particular, the hyperref package requires pdfLaTeX in order to break URLs across lines.
 
-\usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\usepackage{url}
-\usepackage{graphicx}
-\usepackage{amssymb}
+\documentclass[11pt]{article}
+
+% Remove the "guidelines" option to generate the final version.
+\usepackage[guidelines]{reproducibility} % show guidelines
+% \usepackage[]{reproducibility} % hide guidelines
+
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
 \usepackage[T1]{fontenc}
-\usepackage{blkarray}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{biblatex}
-\addbibresource{bibliography.bib} 
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs} % for tables
 
 
-\newcommand{\emailaddr}[1]{\href{mailto:#1}{\texttt{#1}}}
 
 
-\title{TITLE
-\\
-SUBTITLE
-\\
-\begin{small} 
-  Report finale per il corso di ???  - 
-  LM Ingegneria e Scienze Informatiche
-\end{small}
+
+
+% THE pdfinfo Title AND Author ARE NOT NECESSARY, THEY ARE METADATA FOR THE FINAL PDF FILE
+\hypersetup{pdfinfo={
+Title={Reproducibility in Machine Learning Research},
+Author={Davide Domini}
+}}
+%\setcounter{secnumdepth}{0}  
+ \begin{document}
+%
+\title{Reproducibility in Machine Learning Research}
+\author{Davide Domini \\
+University of Bologna -- Department of Computer Science and Engineering\\
+davide.domini@unibo.it
 }
-\author{
-    \emailaddr{author1@studio.unibo.it}
-    \and
-    \emailaddr{author2@studio.unibo.it}
-}
-\date{\today}
-
-\begin{document}
-
 \maketitle
 
-\newpage
 
-\addcontentsline{toc}{section}{Bibliography}
-%\bibliographystyle{unsrt}
-%\bibliography{bibliografia}
-\printbibliography %Prints bibliography
+%\attention{DO NOT MODIFY THIS TEMPLATE - EXCEPT, OF FOR TITLE, SUBTITLE AND AUTHORS.\\ IN THE FINAL VERSION, IN THE \LaTeX\ SOURCE REMOVE THE \texttt{guidelines} OPTION FROM  \texttt{$\backslash$usepackage[guidelines]\{nlpreport\}}.}
+
+\begin{abstract}
+Reproducibility is a cornerstone of scientific integrity but remains a major challenge 
+ in the field of machine learning (ML). 
+%
+The non-deterministic nature of training processes, opaque preprocessing steps, 
+ and poorly documented environments often lead to irreproducible results. 
+%
+This report outlines the core reproducibility issues in ML workflows, 
+ illustrates how they manifest in practice, and discusses tools 
+ and practices that can help mitigate them. 
+% 
+While full reproducibility is difficult to guarantee, adopting rigorous standards 
+ can substantially improve robustness and transparency in ML-based research.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+Reproducibility in scientific research refers to the ability to re-run an experiment and 
+ obtain the same results using the same data and methods. 
+% 
+In machine learning, this concept is critical but elusive. 
+%
+Unlike traditional experiments, ML pipelines often include stochastic processes 
+ (e.g., weight initialization, dropout, random sampling), complex software dependencies, 
+ and undocumented preprocessing---all of which hinder reproducibility.
+
+Recent studies have shown that even minor changes in software libraries or data formats can 
+ lead to significant discrepancies in model performance. 
+% 
+As a result, reproducing published ML results is often non-trivial, 
+ undermining both trust and progress in the field.
+
+\section{Problem Description}
+\label{sec:problem}
+
+A typical ML workflow includes data preprocessing, model training, validation, and evaluation. Each of these steps introduces potential points of failure for reproducibility:
+
+\begin{itemize}
+    \item \textbf{Randomness}: Without fixing random seeds, models may produce different results on each run.
+    \item \textbf{Environment inconsistency}: Dependency updates or changes in library behavior (e.g., different versions of TensorFlow or scikit-learn) can yield divergent outputs.
+    \item \textbf{Data leakage}: Subtle bugs (e.g., using test data during training) can lead to overestimated performance that cannot be replicated.
+    \item \textbf{Lack of documentation}: Important implementation details---such as feature scaling or label encoding---are often missing from publications or repositories.
+\end{itemize}
+
+These issues are rarely due to malice; rather, they arise from insufficient reproducibility planning and the complexity of ML systems.
+
+
+\section{Discussion}
+\label{sec:system}
+Improving ML reproducibility requires a combination of cultural and technical interventions:
+
+\begin{itemize}
+    \item \textbf{Fixing random seeds}: Setting seeds for frameworks (e.g., NumPy, PyTorch) reduces variance across runs.
+    \item \textbf{Environment control}: Tools like Docker or Conda allow the creation of consistent execution environments.
+    \item \textbf{Experiment tracking}: Platforms such as MLflow and Weights \& Biases support systematic logging.
+    \item \textbf{Data versioning}: Tools like DVC extend Git-like control to datasets.
+    \item \textbf{Pipeline automation}: Workflow tools like Snakemake enforce structure and reproducibility.
+    \item \textbf{Open repositories}: Sharing complete codebases on GitHub with documentation is essential.
+\end{itemize}
+
+Despite these tools, social incentives remain misaligned---publication often values novelty over reproducibility. Until reproducibility becomes a first-class metric in evaluations, the problem will persist.
+
+
+\section{Conclusion}
+\label{sec:conclusion}
+Reproducibility in machine learning is not an illusion, but it is certainly fragile. Without deliberate practices and tooling, ML research is prone to producing results that cannot be verified or trusted. Fortunately, the ecosystem now offers mature solutions for many of the reproducibility pitfalls, and their adoption is gradually increasing. By combining transparency, automation, and environment control, researchers can make significant strides toward more robust and trustworthy ML science.
 
 
 \end{document}
