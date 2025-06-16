@@ -5,8 +5,8 @@
 \documentclass[11pt]{article}
 
 % Remove the "guidelines" option to generate the final version.
-\usepackage[guidelines]{reproducibility} % show guidelines
-% \usepackage[]{reproducibility} % hide guidelines
+% \usepackage[guidelines]{reproducibility} % show guidelines
+\usepackage[]{reproducibility} % hide guidelines
 
 
 % Standard package includes
@@ -80,8 +80,8 @@ Unlike traditional experiments, ML pipelines often include stochastic processes
  (e.g., weight initialization, dropout, random sampling), complex software dependencies, 
  and undocumented preprocessing---all of which hinder reproducibility.
 
-Recent studies have shown that even minor changes in software libraries or data formats can 
- lead to significant discrepancies in model performance. 
+Recent studies~\cite{DBLP:journals/ncs/X21i,DBLP:conf/qrs/Rivera-LandosKN21} have shown that even minor changes 
+ in software libraries or data formats can lead to significant discrepancies in model performance. 
 % 
 As a result, reproducing published ML results is often non-trivial, 
  undermining both trust and progress in the field.
@@ -122,5 +122,7 @@ Despite these available tools and practices, reproducibility is still not univer
 \label{sec:conclusion}
 Reproducibility in machine learning is not an illusion, but it is certainly fragile. Without deliberate practices and tooling, ML research is prone to producing results that cannot be verified or trusted. Fortunately, the ecosystem now offers mature solutions for many of the reproducibility pitfalls, and their adoption is gradually increasing. By combining transparency, automation, and environment control, researchers can make significant strides toward more robust and trustworthy ML science.
 
+% \bibliographystyle{unsrt}
+\bibliography{biblio}
 
 \end{document}
