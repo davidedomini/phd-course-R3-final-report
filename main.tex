@@ -102,15 +102,57 @@ As a result, reproducing published ML results is often non-trivial,
 
 \section{Problem Description}
 \label{sec:problem}
-A typical ML workflow includes several stages: data preprocessing, model training, validation, and evaluation. Each of these stages introduces potential sources of irreproducibility.
+A typical ML workflow includes several stages: 
+ data preprocessing, model training, validation, and evaluation. 
+% 
+Each of these stages introduces potential sources of variability 
+ that can affect reproducibility.
 
-Firstly, the inherent randomness in model training—stemming from operations such as random weight initialization or dropout—can result in slightly different models even when trained on the same dataset. Unless all sources of randomness are controlled by setting consistent seeds across libraries like NumPy, PyTorch, or TensorFlow, results may vary between runs.
+Firstly, the inherent randomness in model training, 
+ arising from operations such as random weight initialization or dropout,
+ can result in slightly different models even when trained on the same dataset. 
+%
+Unless all sources of randomness are controlled by setting consistent seeds 
+ across libraries like NumPy, PyTorch, or TensorFlow, 
+ results may vary between runs.
 
-Another critical issue lies in environment inconsistencies. Machine learning code often depends on a complex stack of software libraries and frameworks. Even minor version differences can lead to substantial changes in behavior or performance, making it difficult to reproduce results unless the original environment is precisely replicated.
+Another critical issue lies in environment inconsistencies. 
+%
+Machine learning code often depends on a complex stack of software libraries and frameworks. 
+%
+Even minor version differences can lead to substantial changes in behavior or performance, 
+ making it difficult to reproduce results unless the original environment is precisely replicated.
 
-Data leakage is also a common and often unnoticed pitfall. Mistakes such as including test data during training or improperly shuffling data can lead to artificially high performance metrics that cannot be replicated. These bugs are particularly dangerous because they often go undetected until a failed reproduction attempt occurs.
+Data leakage is also a common and often unnoticed pitfall. 
+%
+Mistakes such as including test data during training or improperly shuffling data can lead to 
+ artificially high performance metrics that cannot be replicated. 
+% 
+These bugs are particularly dangerous because they often go 
+ undetected until a failed reproduction attempt occurs.
+%
+Several studies have demonstrated how data leakage can undermine research credibility 
+ and lead to misleading conclusions.
+%
+For example, in~\cite{DBLP:journals/patterns/KapoorN23}, the authors analyzed 
+ over 300 papers across 17 scientific disciplines and found widespread instances 
+ of data leakage---often due to incorrect data splitting, target leakage, or time-based leakage. 
+% 
+They showed that these flaws systematically inflated model performance, leading to results 
+ that could not be reproduced in follow-up studies.
 
-Finally, a widespread lack of documentation contributes significantly to irreproducibility. Details such as the method of feature scaling, label encoding, or even the exact data preprocessing sequence are frequently omitted in publications, leaving others unable to accurately replicate the study.
+Similarly,~\cite{DBLP:conf/icpr/BussolaMMJF20} highlighted how performance metrics in image 
+ classification tasks can be grossly overestimated when small image patches (tiles) from the 
+ same patient appear in both the training and test sets. 
+%
+Their results showed that such leakage could increase accuracy by more than 40\% compared to a 
+ leakage-free setup, severely compromising generalizability.
+
+Finally, a widespread lack of documentation contributes significantly to irreproducibility. 
+%
+Details such as the method of feature scaling, label encoding, 
+ or even the exact data preprocessing sequence are frequently omitted 
+ in publications, leaving others unable to accurately replicate the study.
 
 
 \section{Discussion}
