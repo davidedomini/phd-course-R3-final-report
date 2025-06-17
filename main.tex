@@ -157,22 +157,56 @@ Details such as the method of feature scaling, label encoding,
 
 \section{Discussion}
 \label{sec:system}
-Improving the reproducibility of machine learning research requires a combination of cultural changes and technical strategies.
+Improving the reproducibility of machine learning research requires a combination of 
+ cultural changes and technical strategies.
 
-Controlling randomness is one of the first steps toward repeatability. Setting fixed seeds for all relevant random number generators can significantly reduce variation between runs. However, even this does not always guarantee identical results, especially when working with GPUs or parallel computation environments.
+Controlling randomness is one of the first steps toward repeatability. 
+%
+Setting fixed seeds for all relevant random number generators can significantly 
+ reduce variation between runs. 
+%
+However, even this does not always guarantee identical results, especially when 
+ working with GPUs or parallel computation environments.
 
-Creating consistent and portable environments is another critical aspect. By using tools like Docker or Conda, researchers can define their execution environment, including all library versions, operating system dependencies, and configurations. This ensures that collaborators or future researchers can replicate the setup exactly as it was during the original experiment.
+Creating consistent and portable environments is another critical aspect. 
+%
+By using tools like Docker or Conda, researchers can define their execution environment, 
+ including all library versions, operating system dependencies, and configurations. 
+% 
+This ensures that collaborators or future researchers can replicate the setup exactly as 
+ it was during the original experiment.
 
-Tracking experiments systematically can also improve reproducibility. Platforms such as MLflow and Weights \& Biases allow researchers to log every detail of their runs, including hyperparameters, datasets, metrics, and model artifacts. This facilitates comparison, debugging, and replication.
+Tracking experiments systematically can also improve reproducibility. 
+%
+Platforms such as MLflow and Weights \& Biases allow researchers to log 
+ every detail of their runs, including hyperparameters, datasets, metrics, and model artifacts. 
+%
+This facilitates comparison, debugging, and replication.
+%
+Versioning of data is equally important. 
+%
+Data Version Control (DVC) extends Git-like tracking to datasets and models, 
+ ensuring that specific versions of data used for training or evaluation 
+ are not lost or overwritten over time.
 
-Versioning of data is equally important. Data Version Control (DVC) extends Git-like tracking to datasets and models, ensuring that specific versions of data used for training or evaluation are not lost or overwritten over time.
+Moreover, the use of workflow management tools such as Snakemake or Kedro introduces structure 
+ to the experimentation process. 
+%
+These tools help formalize and automate complex pipelines, ensuring that each 
+ step is well-defined and reproducible.
 
-Moreover, the use of workflow management tools such as Snakemake or Kedro introduces structure to the experimentation process. These tools help formalize and automate complex pipelines, ensuring that each step is well defined and reproducible.
+Finally, publishing well-documented codebases is essential. 
+%
+Making repositories publicly available on platforms like GitHub, 
+ along with clear README files and requirements, 
+ should be a standard practice for any scientific ML project.
 
-Finally, publishing well-documented codebases is essential. Making repositories publicly available on platforms like GitHub, along with clear README files and requirements, should be a standard practice for any scientific ML project.
-
-Despite these available tools and practices, reproducibility is still not universally prioritized. Academic and industry incentives often reward novelty and results over transparency and robustness. Until there is a cultural shift that values reproducibility as a core scientific metric, these technical solutions will remain underutilized.
-
+Despite these available tools and practices, reproducibility is still not universally prioritized. 
+%
+Academic and industry incentives often reward novelty and results over transparency and robustness. 
+%
+Until there is a cultural shift that values reproducibility as a core scientific metric, 
+ these technical solutions will remain underutilized.
 
 \section{Conclusion}
 \label{sec:conclusion}
